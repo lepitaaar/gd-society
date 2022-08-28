@@ -10,22 +10,22 @@
 </head>
 <body>
     <div class="horizon" style="align-items: center; text-align: center;">
-        <button onclick="location.href = '#'">전체</button>
+        <button onclick="location.href = 'index.html'">전체</button>
         <button onclick="location.href = 'gunjo.html'">건조문화권</button>
         <button onclick="location.href = 'anglo.html'">앵글로문화권</button>
         <button onclick="location.href = 'latin.html'">라틴아메리카문화권</button>
-        <button onclick="location.href = 'ose.html'">오세아니아문화권</button>
+        <button onclick="location.href = '#'">오세아니아문화권</button>
         <button onclick="location.href = 'namboo.html'">남부아시아문화권</button>
         <button onclick="location.href = 'dongnam.html'">동남아시아문화권</button>
         <button onclick="location.href = 'dongasia.html'">동아시아문화권</button>
         <button onclick="location.href = 'afr.html'">아프리카문화권</button>
-        <button onclick="location.href = 'er.html'">유럽문화권</button>
+        <button onclick="location.href = '#'">유럽문화권</button>
     </div>
 
     <div class="container">
         <canvas id="canvas"></canvas>
 
-        <p id="score">0 / 62</p>
+        <p id="score">0 / 16</p>
     
         <div id="answer-form">
             <input id="answer-input" onkeyup="if(window.event.keyCode==13){check();}" type="text">
@@ -37,68 +37,22 @@
     
     <script type="text/javascript">
         var locate = new Map([
-            ["그리스", [161, 263]],
-            ["나이지리아", [114, 384]],
-            ["남아프리카공화국", [166, 515]],
-            ["네팔", [352, 313]],
-            ["노르웨이", [125, 171]],
-            ["뉴질랜드", [639, 546]],
-            ["덴마크", [123, 201]],
-            ["독일", [125, 222]],
-            ["라오스", [414, 345]],
-            ["루마니아", [171, 247]],
-            ["리비아", [150, 323]],
-            ["말레이시아", [410, 397]],
-            ["멕시코", [895, 332]],
-            ["몽골", [413, 242]],
-            ["미국", [965, 274]],
-            ["미얀마", [392, 336]],
-            ["방글라데시", [373, 330]],
-            ["베트남", [421, 338]],
-            ["브라질", [1047, 439]],
-            ["사우디아라비아", [229, 336]],
-            ["세르비아", [159, 253]],
-            ["소말리아", [248, 379]],
-            ["수단", [188, 357]],
-            ["스리랑카", [344, 385]],
-            ["스웨덴", [144, 185]],
-            ["시리아", [213, 289]],
-            ["싱가포르", [415, 404]],
-            ["아르헨티나", [1016, 536]],
-            ["아이슬란드", [39, 156]],
-            ["알제리", [99, 314]],
-            ["에스파냐", [82, 270]],
-            ["에티오피아", [214, 380]],
-            ["에콰도르", [965, 412]],
-            ["영국", [90, 217]],
-            ["오스트레일리아", [551, 531]],
-            ["우즈베키스탄", [282, 256]],
-            ["우크라이나", [193, 233]],
-            ["이라크", [229, 295]],
-            ["이란", [264, 299]],
-            ["이집트", [184, 319]],
-            ["이탈리아", [134, 260]],
-            ["인도", [329, 318]],
-            ["인도네시아", [412, 416]],
-            ["일본", [524, 283]],
-            ["중국", [421, 292]],
-            ["체코", [140, 230]],
-            ["칠레", [989, 530]],
-            ["캄보디아", [419, 367]],
-            ["카자흐스탄", [302, 230]],
-            ["캐나다", [980, 234]],
-            ["케냐", [212, 409]],
-            ["콜롬비아", [982, 394]],
-            ["타이", [408, 357]],
-            ["탄자니아", [202, 431]],
-            ["튀르키예", [192, 272]],
-            ["파키스탄", [313, 307]],
-            ["페루", [983, 450]],
-            ["포르투갈", [69, 271]],
-            ["폴란드", [153, 217]],
-            ["프랑스", [98, 240]],
-            ["필리핀", [471, 352]],
-            ["헝가리", [154, 242]]]
+            ["아이슬란드", [232, 52]],
+            ["영국", [264, 302]],
+            ["프랑스", [282, 409]],
+            ["독일", [381, 349]],
+            ["덴마크", [379, 263]],
+            ["스웨델", [395, 178]],
+            ["포르투갈", [118, 500]],
+            ["에스파냐", [183, 502]],
+            ["이탈리아", [388, 490]],
+            ["그리스", [509, 556]],
+            ["폴란드", [468, 333]],
+            ["체코", [426, 376]],
+            ["헝가리", [471, 429]],
+            ["세르비아", [489, 474]],
+            ["루마니아", [533, 440]],
+            ["우크라이나", [606, 375]]]
         )
 
         var answer = ""
@@ -110,7 +64,7 @@
             var canvas = document.getElementById("canvas");
             var ctx = canvas.getContext("2d");
             var map = new Image();
-            map.src = 'map.png';
+            map.src = 'er.png';
             map.onload = function() {
                 canvas.width = map.width
                 canvas.height = map.height

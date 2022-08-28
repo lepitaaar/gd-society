@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-body {
+.container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,7 +21,7 @@ canvas {
     max-height: 638px;
 }
 
-button {
+.confirm {
     margin-left: 5px;
     background-color: white;
     border: 1px solid black;
@@ -32,6 +32,15 @@ button {
     height: 35px;
     text-align: center;
     align-items: center;
+}
+
+.horizon {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.horizon::-webkit-scrollbar{
+    display: none; 
 }
 
 #answer-input {
