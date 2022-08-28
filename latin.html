@@ -97,10 +97,10 @@
         function check() {
             var answerinput = document.getElementById("answer-input");
             if (answerinput.value == answer) {
-                if (locate.size > 1) {
-                    if (!showanswer) {
+                if (!showanswer) {
                         correct++;
-                    }
+                }
+                if (locate.size > 1) {
                     var score = document.getElementById("score");
                     score.innerText = correct + " / " + mapsize;
                     locate.delete(answer);
