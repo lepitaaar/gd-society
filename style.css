@@ -1,0 +1,41 @@
+#answer-form {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+canvas {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    max-width: 1173px;
+    max-height: 638px;
+}
+
+button {
+    margin-left: 5px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 7px;
+    width: 60px;
+    height: 35px;
+    text-align: center;
+    align-items: center;
+}
+
+#answer-input {
+    align-items: center;
+    display: inline-block;
+    vertical-align: center;
+}

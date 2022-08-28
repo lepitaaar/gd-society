@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko_kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>구덕고등학교 사회수행</title>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+
+    <div id="answer-form">
+        <input id="answer-input" onkeyup="if(window.event.keyCode==13){check();}" type="text">
+        <button id="submit" onclick="check();">제출</button>
+        <button id="answer-check" onclick="showAnswer();">정답</button>
+        <button id="next" onclick="draw();">다음</button>
+    </div>
+    <!-- 977 241 -->
+    <script type="text/javascript">
+        var locate = new Map([
+            ["그리스", [161, 263]],
+            ["나이지리아", [114, 384]],
+            ["남아프리카공화국", [166, 515]],
+            ["네팔", [352, 313]],
+            ["노르웨이", [125, 171]],
+            ["뉴질랜드", [639, 546]],
+            ["덴마크", [123, 201]],
+            ["독일", [125, 222]],
+            ["라오스", [414, 345]],
+            ["루마니아", [171, 247]],
+            ["리비아", [150, 323]],
+            ["말레이시아", [410, 397]],
+            ["멕시코", [895, 332]],
+            ["몽골", [413, 242]],
+            ["미국", [965, 274]],
+            ["미얀마", [392, 336]],
+            ["방글라데시", [373, 330]],
+            ["베트남", [421, 338]],
+            ["브라질", [1047, 439]],
+            ["사우디아라비아", [229, 336]],
+            ["세르비아", [159, 253]],
+            ["소말리아", [248, 379]],
+            ["수단", [188, 357]],
+            ["스리랑카", [344, 385]],
+            ["스웨덴", [144, 185]],
+            ["시리아", [213, 289]],
+            ["싱가포르", [415, 404]],
+            ["아르헨티나", [1016, 536]],
+            ["아이슬란드", [39, 156]],
+            ["알제리", [99, 314]],
+            ["에스파냐", [82, 270]],
+            ["에티오피아", [214, 380]],
+            ["에콰도르", [965, 412]],
+            ["영국", [90, 217]],
+            ["오스트레일리아", [551, 531]],
+            ["우즈베키스탄", [282, 256]],
+            ["우크라이나", [193, 233]],
+            ["이라크", [229, 295]],
+            ["이란", [264, 299]],
+            ["이집트", [184, 319]],
+            ["이탈리아", [134, 260]],
+            ["인도", [329, 318]],
+            ["인도네시아", [412, 416]],
+            ["일본", [524, 283]],
+            ["중국", [421, 292]],
+            ["체코", [140, 230]],
+            ["칠레", [989, 530]],
+            ["캄보디아", [419, 367]],
+            ["카자흐스탄", [302, 230]],
+            ["캐나다", [980, 234]],
+            ["케냐", [212, 409]],
+            ["콜롬비아", [982, 394]],
+            ["타이", [408, 357]],
+            ["탄자니아", [202, 431]],
+            ["튀르키예", [192, 272]],
+            ["파키스탄", [313, 307]],
+            ["페루", [983, 450]],
+            ["포르투갈", [69, 271]],
+            ["폴란드", [153, 217]],
+            ["프랑스", [98, 240]],
+            ["필리핀", [471, 352]],
+            ["헝가리", [154, 242]]]
+        )
+
+        var answer = ""
+
+        function draw() {
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            var map = new Image();
+            map.src = 'map.png';
+            map.onload = function() {
+                canvas.width = map.width
+                canvas.height = map.height
+                ctx.drawImage(map, 0, 0);
+                ctx.fillStyle = "#cc0000"; // 색상
+                const key = getRandomItem(locate);
+                answer = key;
+                var answerinput = document.getElementById("answer-input");
+                answerinput.value = "";
+                ctx.fillRect(locate.get(key)[0], locate.get(key)[1], 10, 10); // 도형
+            }
+
+            function getRandomItem(collection) {
+                let keys = Array.from(collection.keys());
+                var random = Math.floor(Math.random() * keys.length)
+                return keys[random];
+            }
+        }
+
+        function check() {
+            var answerinput = document.getElementById("answer-input");
+            if (answerinput.value == answer) {
+                draw()
+            } else {
+                Swal.fire({
+                    title: '오답',
+                    showClass: {
+                        popup: ''
+                    },
+                    hideClass: {
+                        popup: ''
+                    },
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                })
+            }
+        }
+
+        function showAnswer() {
+            var answerinput = document.getElementById("answer-input");
+            answerinput.value = answer;
+        }
+        
+        function getRandomKey(collection) {
+            let keys = Array.from(collection.keys());
+            return keys[Math.floor(Math.random() * keys.length)];
+        }
+
+        draw()
+    </script>
+</body>
+</html>
