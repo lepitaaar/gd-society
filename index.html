@@ -84,7 +84,7 @@
             ["중국", [421, 292]],
             ["체코", [140, 230]],
             ["칠레", [989, 530]],
-            ["캄보디아", [419, 367]],
+            ["캄보디아", [419, 370]],
             ["카자흐스탄", [302, 230]],
             ["캐나다", [980, 234]],
             ["케냐", [212, 409]],
@@ -101,28 +101,31 @@
             ["헝가리", [154, 242]]]
         )
 
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        var map = new Image();
+        map.src = 'map.png';
+
+
+        var incorrect = new Map()
+
         var answer = ""
         var showanswer = false;
         var correct = 0;
         var mapsize = locate.size;
 
         function draw() {
-            var canvas = document.getElementById("canvas");
-            var ctx = canvas.getContext("2d");
-            var map = new Image();
-            map.src = 'map.png';
-            map.onload = function() {
-                canvas.width = map.width
-                canvas.height = map.height
-                ctx.drawImage(map, 0, 0);
-                ctx.fillStyle = "#cc0000"; // 색상
-                const key = getRandomItem(locate);
-                answer = key;
-                showanswer = false;
-                var answerinput = document.getElementById("answer-input");
-                answerinput.value = "";
-                ctx.fillRect(locate.get(key)[0], locate.get(key)[1], 10, 10); // 도형
-            }
+            ctx.beginPath() 
+            const key = getRandomItem(locate);
+            answer = key;
+            showanswer = false;
+            var answerinput = document.getElementById("answer-input");
+            answerinput.value = "";
+            // ctx.fillRect(locate.get(key)[0], locate.get(key)[1], 10, 10); // 도형
+            ctx.arc(locate.get(key)[0], locate.get(key)[1], 4, 0, 2*Math.PI);
+            ctx.stroke()
+            ctx.fillStyle = "#cc0000"; // 색상
+            ctx.fill()
 
             function getRandomItem(collection) {
                 let keys = Array.from(collection.keys());
@@ -133,10 +136,8 @@
         
         function next() {
             if (locate.size > 1) {
-                var score = document.getElementById("score");
-                score.innerText = correct + " / " + mapsize;
-                locate.delete(answer);
-                draw()
+                incorrect.set(answer, locate.get(answer))
+                newQuestion()
             } else {
                 Swal.fire({
                     icon: "success",
@@ -153,13 +154,15 @@
             var answerinput = document.getElementById("answer-input");
             if (answerinput.value == answer) {
                 if (!showanswer) {
-                        correct++;
+                    ctx.fillStyle = "#1beb00"; // 색상
+                    ctx.fill()
+                    correct++;
+                } else {
+
+                    incorrect.set(answer, locate.get(answer))
                 }
                 if (locate.size > 1) {
-                    var score = document.getElementById("score");
-                    score.innerText = correct + " / " + mapsize;
-                    locate.delete(answer);
-                    draw()
+                    newQuestion()
                 } else {
                     Swal.fire({
                         icon: "success",
@@ -184,6 +187,13 @@
             }
         }
 
+        function newQuestion() {
+            var score = document.getElementById("score");
+            score.innerText = correct + " / " + mapsize;
+            locate.delete(answer);
+            draw()
+        }
+
         function showAnswer() {
             var answerinput = document.getElementById("answer-input");
             answerinput.value = answer;
@@ -195,7 +205,12 @@
             return keys[Math.floor(Math.random() * keys.length)];
         }
 
-        draw()
+        map.onload = function() {
+            canvas.width = map.width
+            canvas.height = map.height
+            ctx.drawImage(map, 0, 0);
+            draw()
+        }
     </script>
 </body>
 </html>
