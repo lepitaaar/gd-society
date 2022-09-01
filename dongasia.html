@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko_kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>구덕고등학교 사회수행</title>
+</head>
+<body>
+    <div class="horizon" style="align-items: center; text-align: center;">
+        <button onclick="location.href = 'index.html'">전체</button>
+        <button onclick="location.href = 'gunjo.html'">건조문화권</button>
+        <button onclick="location.href = 'anglo.html'">앵글로문화권</button>
+        <button onclick="location.href = 'latin.html'">라틴아메리카문화권</button>
+        <button onclick="location.href = 'ose.html'">오세아니아문화권</button>
+        <button onclick="location.href = 'namboo.html'">남부아시아문화권</button>
+        <button onclick="location.href = 'dongnam.html'">동남아시아문화권</button>
+        <button onclick="location.href = '#'">동아시아문화권</button>
+        <button onclick="location.href = 'afr.html'">아프리카문화권</button>
+        <button onclick="location.href = 'er.html'">유럽문화권</button>
+    </div>
+
+    <div class="container">
+        <canvas id="canvas"></canvas>
+
+        <p id="score">0 / 3</p>
+    
+        <div id="answer-form">
+            <input id="answer-input" onkeyup="if(window.event.keyCode==13){check();}" type="text">
+            <button class="confirm" id="submit" onclick="check();">제출</button>
+            <button class="confirm" id="answer-check" onclick="showAnswer();">정답</button>
+            <button class="confirm" id="next" onclick="next();">다음</button>
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+        var locate = new Map([
+            ["몽골", [413, 242]],
+            ["일본", [524, 283]],
+            ["중국", [421, 292]]]
+        )
+
+        var answer = ""
+        var showanswer = false;
+        var correct = 0;
+        var mapsize = locate.size;
+
+        function draw() {
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            var map = new Image();
+            map.src = 'map.png';
+            map.onload = function() {
+                canvas.width = map.width
+                canvas.height = map.height
+                ctx.drawImage(map, 0, 0);
+                ctx.fillStyle = "#cc0000"; // 색상
+                const key = getRandomItem(locate);
+                answer = key;
+                showanswer = false;
+                var answerinput = document.getElementById("answer-input");
+                answerinput.value = "";
+                ctx.fillRect(locate.get(key)[0], locate.get(key)[1], 10, 10); // 도형
+            }
+
+            function getRandomItem(collection) {
+                let keys = Array.from(collection.keys());
+                var random = Math.floor(Math.random() * keys.length)
+                return keys[random];
+            }
+        }
+        
+        function next() {
+            if (locate.size > 1) {
+                var score = document.getElementById("score");
+                score.innerText = correct + " / " + mapsize;
+                locate.delete(answer);
+                draw()
+            } else {
+                Swal.fire({
+                    icon: "success",
+                    title: correct + " / " + mapsize,
+                    confirmButtonText: "Re?",
+                    // confirmButtonColor: '#3085d6',
+                }).then((result) => {
+                    location.reload();
+                })
+            }
+        }
+
+        function check() {
+            var answerinput = document.getElementById("answer-input");
+            if (answerinput.value == answer) {
+                if (!showanswer) {
+                        correct++;
+                }
+                if (locate.size > 1) {
+                    var score = document.getElementById("score");
+                    score.innerText = correct + " / " + mapsize;
+                    locate.delete(answer);
+                    draw()
+                } else {
+                    Swal.fire({
+                        icon: "success",
+                        title: correct + " / " + mapsize,
+                        confirmButtonText: "Re?",
+                        // confirmButtonColor: '#3085d6',
+                    }).then((result) => {
+                        location.reload();
+                    })
+                }
+            } else {
+                Swal.fire({
+                    title: '오답',
+                    showClass: {
+                        popup: ''
+                    },
+                    hideClass: {
+                        popup: ''
+                    },
+                    confirmButtonColor: '#3085d6',
+                })
+            }
+        }
+
+        function showAnswer() {
+            var answerinput = document.getElementById("answer-input");
+            answerinput.value = answer;
+            showanswer = true;
+        }
+        
+        function getRandomKey(collection) {
+            let keys = Array.from(collection.keys());
+            return keys[Math.floor(Math.random() * keys.length)];
+        }
+
+        draw()
+    </script>
+</body>
+</html>
