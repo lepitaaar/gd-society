@@ -124,8 +124,6 @@ function getRandomKey(collection) {
     return keys[Math.floor(Math.random() * keys.length)];
 }
 
-function Mobile() {return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);}
-
 map.onload = function() {
     var score = document.getElementById("score");
     score.innerText = correct + " / " + mapsize;
