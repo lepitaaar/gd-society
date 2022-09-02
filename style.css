@@ -45,6 +45,7 @@ canvas {
     overflow: auto;
     white-space: nowrap;
     margin-bottom: 8px;
+    margin-top: 8px;
 }
 
 .horizon::-webkit-scrollbar{
@@ -70,4 +71,8 @@ canvas {
     background-color: #FFF;
     border-radius: 13px;
     padding: 5px 7px 5px 7px;
+}
+
+body {
+    margin: 0px;
 }
