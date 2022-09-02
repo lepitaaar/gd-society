@@ -181,12 +181,12 @@
             score.innerText = correct + " / " + mapsize;
             canvas.width = map.width
             canvas.height = map.height
-            var BB=canvas.getBoundingClientRect();
-            offsetX=BB.left;
-            offsetY=BB.top; 
             ctx.lineWidth = 2;
             ctx.drawImage(map, 0, 0);
             draw()
+            var BB=canvas.getBoundingClientRect();
+            offsetX=BB.left;
+            offsetY=BB.top; 
         }
 
         function getKey(value) {
