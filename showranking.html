@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko_kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>구덕고등학교 사회수행</title>
+</head>
+<body>
+    <div class="horizon" style="align-items: center; text-align: center;">
+        <button onclick="location.href = 'index.html'">홈</button>
+        <h1>상위 10위</h1>
+
+        <div id="container">
+        
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        fetch("http://39.113.240.156:3000/ranking")
+        .then((response) => response.json())
+        .then((data) => {
+            var array = []
+            for (item in data) {
+                if (item == 10)
+                    break;
+                var json = data[item]
+                array.push({
+                    name: json.name,
+                    score: json.score,
+                    time: parseFloat(json.time).toFixed(1)
+                })
+            }
+
+            array.sort((a,b) => a.time - b.time)
+            array.sort((a,b) => b.score - a.score)
+
+            for (item in array) {
+                var json = array[item]
+                if (item == 0) {
+                    var rank = document.createElement('h2')
+                    rank.append(createTextNode = `이름 : ${json.name} / 점수 : ${json.score} / 시간 : ${parseFloat(json.time).toFixed(1)}`)
+                    document.getElementById("container").append(rank)
+                } else {
+                    var rank = document.createElement('p')
+                    rank.append(createTextNode = `이름 : ${json.name} / 점수 : ${json.score} / 시간 : ${parseFloat(json.time).toFixed(1)}`)
+                    document.getElementById("container").append(rank)
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

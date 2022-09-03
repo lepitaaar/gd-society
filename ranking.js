@@ -31,20 +31,17 @@ function draw() {
     }
 }
 
+var moosang = false;
+
 function endAlert() {
-    Swal.fire({
-            icon: "success",
-            title: correct + " / " + mapsize,
-            confirmButtonText: "다시하기",
-            showCancelButton: true,
-            cancelButtonText: "오답확인",
-            confirmButtonColor: '#00b952',
-            cancelButtonColor: '#7066e0',
-    }).then((result) => {
-        if (result.isConfirmed) {
-            location.reload();
-        }
-    })
+    if (!moosang) {
+        moosang = true;
+        clearInterval(timer)
+        var input = prompt("이름 : ");
+        fetch(`http://39.113.240.156:3000/ranking?name=${input}&score=${correct}&time=${time}`, {
+            method: "POST"
+        })
+    }
 }
 
 function next() {
