@@ -20,7 +20,9 @@
     </div>
 
     <script type="text/javascript">
-        fetch("http://39.113.240.156:3000/ranking")
+        fetch("http://39.113.240.156:3000/ranking", {
+            referrerPolicy: "unsafe_url"
+        })
         .then((response) => response.json())
         .then((data) => {
             var array = []
