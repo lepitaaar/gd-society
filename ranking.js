@@ -38,7 +38,7 @@ function endAlert() {
         moosang = true;
         clearInterval(timer)
         var input = prompt("이름 : ");
-        fetch(`http://39.113.240.156:3000/ranking?name=${input}&score=${correct}&time=${time}`, {
+        fetch(`https://gdbackend.r-e.kr:3000/ranking?name=${input}&score=${correct}&time=${time}`, {
             referrerPolicy: "unsafe-url",
             method: "POST"
         })
