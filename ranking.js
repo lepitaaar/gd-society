@@ -39,7 +39,7 @@ function endAlert() {
         clearInterval(timer)
         var input = prompt("이름 : ");
         fetch(`http://39.113.240.156:3000/ranking?name=${input}&score=${correct}&time=${time}`, {
-            referrerPolicy: "unsafe_url",
+            referrerPolicy: "unsafe-url",
             method: "POST"
         })
     }
