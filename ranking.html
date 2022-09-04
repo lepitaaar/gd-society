@@ -108,6 +108,7 @@
 
             var time = 0.0;
             var timer = null;
+            var isStart = false;
             document.getElementById("stopwatch").innerText = time + "초"
             
             function start() {
@@ -117,6 +118,7 @@
                     confirmButtonText: '시작',
                 }).then((result) => {
                     if (result.isConfirmed) {
+                        isStart = true;
                         timer = setInterval(function() {
                             time += 0.1;
                             document.getElementById("stopwatch").innerText = time.toFixed(1) + "초"

@@ -46,6 +46,7 @@ function endAlert() {
 }
 
 function next() {
+    if (!isStart) return;
     if (locate.size > 1) {
         wrong()
         newQuestion()
@@ -61,6 +62,7 @@ function next() {
 var repeatCheck = true;
 
 function check() {
+    if (!isStart) return;
     var answerinput = document.getElementById("answer-input");
     if (answerinput.value == answer) {
         if (!showanswer && repeatCheck) {
@@ -116,6 +118,7 @@ function wrong() {
 }
 
 function showAnswer() {
+    if(!isStart) return;
     var answerinput = document.getElementById("answer-input");
     answerinput.value = answer;
     showanswer = true;
