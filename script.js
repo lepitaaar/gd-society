@@ -64,7 +64,7 @@ var repeatCheck = true;
 
 function check() {
     var answerinput = document.getElementById("answer-input");
-    if (answerinput.value == answer) {
+    if (answerinput.value.trim() == answer) {
         if (!showanswer && repeatCheck) {
             correctAnswer()
             correct++;

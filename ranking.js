@@ -64,7 +64,7 @@ var repeatCheck = true;
 function check() {
     if (!isStart) return;
     var answerinput = document.getElementById("answer-input");
-    if (answerinput.value == answer) {
+    if (answerinput.value.trim() == answer) {
         if (!showanswer && repeatCheck) {
             correctAnswer()
             correct++;
@@ -74,6 +74,8 @@ function check() {
         if (locate.size > 1) {
             newQuestion()
         } else {
+            var score = document.getElementById("score");
+            score.innerText = correct + " / " + mapsize;
             repeatCheck = false;
             shape.push({points:[locate.get(answer)[0],locate.get(answer)[1]],
                 country:answer})
