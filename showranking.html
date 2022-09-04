@@ -12,7 +12,7 @@
 <body>
     <div class="horizon" style="align-items: center; text-align: center;">
         <button onclick="location.href = 'index.html'">홈</button>
-        <h1>상위 10위</h1>
+        <h1>상위 30위</h1>
 
         <div id="container">
         
@@ -39,7 +39,7 @@
             array.sort((a,b) => b.score - a.score)
 
             for (item in array) {
-                if (item == 10) break;
+                if (item == 30) break;
                 var json = array[item]
                 if (item == 0) {
                     var rank = document.createElement('h2')
