@@ -38,6 +38,7 @@ function endAlert() {
         moosang = true;
         clearInterval(timer)
         var input = prompt("이름 : ");
+        if (input == null) input = "Anonymous"
         fetch(`https://gdbackend.r-e.kr:3000/ranking?name=${input}&score=${correct}&time=${time}`, {
             referrerPolicy: "unsafe-url",
             method: "POST"
