@@ -191,7 +191,7 @@ var layer =  document.createElement('div');
 function hoverItem(e) {
     e.preventDefault();
     e.stopPropagation();
-    
+
     mouseX = getMousePos(canvas, e).x
     mouseY = getMousePos(canvas, e).y
 
@@ -216,4 +216,5 @@ function hoverItem(e) {
             layer.remove()
         }
     }
+
 }

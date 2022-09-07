@@ -20,9 +20,7 @@
     </div>
 
     <script type="text/javascript">
-        fetch("https://gdbackend.r-e.kr:3000/ranking", {
-            referrerPolicy: "unsafe-url"
-        })
+        fetch("https://gdbackend.r-e.kr:3000/ranking")
         .then((response) => response.json())
         .then((data) => {
             var array = []
@@ -35,8 +33,10 @@
                 })
             }
 
-            array.sort((a,b) => a.time - b.time)
-            array.sort((a,b) => b.score - a.score)
+            //array sort time & score
+            array.sort(function(a, b) {
+                return b.score - a.score || a.time - b.time
+            })
 
             //select 30 item in array and if item is first make h1 tag, otherwise make p tag
             var container = document.getElementById("container")
