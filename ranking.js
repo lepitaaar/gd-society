@@ -37,7 +37,7 @@ function endAlert() {
     if (!moosang) {
         moosang = true;
         clearInterval(timer)
-        var input = prompt("이름 : ");
+        var input = prompt("이름(중복있을시 점수가 높은걸로 표시됩니다) : ");
         if (input == null) return;
         else if(input.length == 0) input = "Anonymous"
         fetch(`https://gdbackend.r-e.kr:3000/ranking?name=${input}&score=${correct}&time=${time}`, {
