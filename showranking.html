@@ -38,18 +38,17 @@
             array.sort((a,b) => a.time - b.time)
             array.sort((a,b) => b.score - a.score)
 
-            for (item in array) {
-                if (item == 30) break;
-                var json = array[item]
-                if (item == 0) {
-                    var rank = document.createElement('h2')
-                    rank.append(createTextNode = `이름 : ${json.name} / 점수 : ${json.score} / 시간 : ${parseFloat(json.time).toFixed(1)}`)
-                    document.getElementById("container").append(rank)
-                } else {
-                    var rank = document.createElement('p')
-                    rank.append(createTextNode = `이름 : ${json.name} / 점수 : ${json.score} / 시간 : ${parseFloat(json.time).toFixed(1)}`)
-                    document.getElementById("container").append(rank)
+            //select 30 item in array and if item is first make h1 tag, otherwise make p tag
+            var container = document.getElementById("container")
+            for (var i = 0; i < 30; i++) {
+                var item = array[i]
+                var element = document.createElement("p")
+                element.innerText = `${i+1}위 ${item.name} (${item.score}점, ${item.time}초)`
+                if (i == 0) {
+                    element = document.createElement("h1")
+                    element.innerText = `${i+1}위 ${item.name} (${item.score}점, ${item.time}초)`
                 }
+                container.appendChild(element)
             }
 
         })
